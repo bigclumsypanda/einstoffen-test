@@ -1,0 +1,97 @@
+#--------------------------------------------------------------------
+# ENVIRONMENT
+#--------------------------------------------------------------------
+CI_ENVIRONMENT = development
+
+#--------------------------------------------------------------------
+# APP
+#--------------------------------------------------------------------
+app.baseURL = 'http://localhost:8080/'
+
+#--------------------------------------------------------------------
+# DATABASE
+#--------------------------------------------------------------------
+database.default.hostname = db:3306
+database.default.database = ci4
+database.default.username = ci4
+database.default.password = ci4password
+database.default.DBDriver = MySQLi
+database.default.DBPrefix =
+database.default.port = 3306
+database.default.charset = utf8mb4
+database.default.DBCollat = utf8mb4_general_ci
+
+#--------------------------------------------------------------------
+# DATABASE (tests)
+#--------------------------------------------------------------------
+database.tests.hostname = db:3306
+database.tests.database = ci4_test
+database.tests.username = ci4
+database.tests.password = ci4password
+database.tests.DBDriver = MySQLi
+database.tests.DBPrefix =
+database.tests.port = 3306
+database.tests.charset = utf8mb4
+database.tests.DBCollat = utf8mb4_general_ci
+
+#--------------------------------------------------------------------
+# ENCRYPTION
+#--------------------------------------------------------------------
+encryption.key =
+
+#--------------------------------------------------------------------
+# SESSION
+#--------------------------------------------------------------------
+session.driver = 'CodeIgniter\Session\Handlers\RedisHandler'
+session.savePath = tcp://redis:6379
+
+#--------------------------------------------------------------------
+# LOGGER
+#--------------------------------------------------------------------
+logger.threshold = 7
+
+#--------------------------------------------------------------------
+# EMAIL (Mailpit)
+#--------------------------------------------------------------------
+email.protocol = smtp
+email.SMTPHost = mailpit:1025
+email.SMTPUser =
+email.SMTPPass =
+email.SMTPPort = 1025
+email.SMTPCrypto =
+email.fromEmail = no-reply@example.local
+email.fromName = Einstoffen
+email.recipients =
+
+#--------------------------------------------------------------------
+# QUEUE
+#--------------------------------------------------------------------
+# Default handler: database, redis, predis, rabbitmq
+queue.defaultHandler = redis
+
+# Database handler (uses the 'default' DB connection above)
+queue.database.dbGroup = default
+queue.database.getShared = true
+queue.database.skipLocked = true
+
+# Redis handler
+queue.redis.host = redis
+queue.redis.port = 6379
+queue.redis.timeout = 3
+
+# RabbitMQ handler (set queue.defaultHandler = rabbitmq to use it)
+queue.rabbitmq.host = 127.0.0.1
+queue.rabbitmq.port = 5672
+queue.rabbitmq.user = guest
+queue.rabbitmq.password = guest
+queue.rabbitmq.vhost = /
+
+# Administrator that receives failure notifications
+webhook.adminEmail = admin@example.local
+
+#--------------------------------------------------------------------
+# CACHE (Redis)
+#--------------------------------------------------------------------
+cache.handler = redis
+cache.redis.host = redis
+cache.redis.port = 6379

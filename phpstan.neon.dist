@@ -1,0 +1,22 @@
+includes:
+    - vendor/codeigniter/phpstan-codeigniter/extension.neon
+
+parameters:
+    level: 5
+
+    tmpDir: build/phpstan
+
+    paths:
+        - app
+
+    excludePaths:
+        - app/Views/*
+
+    bootstrapFiles:
+        - vendor/codeigniter4/framework/system/Test/bootstrap.php
+
+    codeigniter:
+        schemaCacheDirectory: %currentWorkingDirectory%/build/phpstan/schema
+        schemaNamespace: 'App'
+        additionalServices:
+            - CodeIgniter\Queue\Config\Services

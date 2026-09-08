@@ -1,0 +1,165 @@
+{
+  "uuid": "b3c12b9c-bb02-4688-b577-9de7de83d602",
+  "lastMigration": 33,
+  "name": "Simple Shipping API Mock",
+  "endpointPrefix": "",
+  "latency": 0,
+  "port": 3000,
+  "hostname": "0.0.0.0",
+  "folders": [],
+  "routes": [
+    {
+      "uuid": "a13a48b8-f229-45cf-9981-9ae21a9baf5e",
+      "type": "crud",
+      "documentation": "Stateful shipment CRUD backed by an in-memory data bucket. POST /shipments creates a shipment. If 'id' is omitted, Mockoon generates a UUID v4 automatically. Also supports GET /shipments, GET /shipments/:id, PATCH/PUT /shipments/:id and DELETE /shipments/:id.",
+      "method": "",
+      "endpoint": "shipments",
+      "responses": [
+        {
+          "uuid": "4460a8d3-3561-4b11-b193-85ded109ed0c",
+          "body": "{}",
+          "latency": 80,
+          "statusCode": 200,
+          "label": "Shipments CRUD",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "DATABUCKET",
+          "filePath": "",
+          "databucketID": "shipmentsData",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "f6794020-0527-444b-8651-6618d42b76fc",
+      "type": "http",
+      "documentation": "Simple fake tracking endpoint. It does not validate the shipment; it returns a predictable test status for the supplied id.",
+      "method": "get",
+      "endpoint": "tracking/:id",
+      "responses": [
+        {
+          "uuid": "dbecc440-4832-45e3-9240-80b8b8f85a1c",
+          "body": "{\n  \"shipmentId\": \"{{urlParam 'id'}}\",\n  \"status\": \"in_transit\",\n  \"estimatedDelivery\": \"2026-09-12\",\n  \"message\": \"Package is on the way\"\n}",
+          "latency": 50,
+          "statusCode": 200,
+          "label": "Tracking",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "7f8ab385-2a78-4236-89d6-ecc224fd70b7",
+      "type": "http",
+      "documentation": "Very simple address validation for a test assignment. It always returns valid=true and echoes the common address fields.",
+      "method": "post",
+      "endpoint": "address-validation",
+      "responses": [
+        {
+          "uuid": "98bceaa4-e6df-437e-99b5-a6ee46af7943",
+          "body": "{\n  \"valid\": true,\n  \"address\": {\n    \"street\": \"{{body 'street' ''}}\",\n    \"city\": \"{{body 'city' ''}}\",\n    \"postalCode\": \"{{body 'postalCode' ''}}\",\n    \"country\": \"{{body 'country' ''}}\"\n  }\n}",
+          "latency": 40,
+          "statusCode": 200,
+          "label": "Address valid",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    }
+  ],
+  "rootChildren": [
+    {
+      "type": "route",
+      "uuid": "a13a48b8-f229-45cf-9981-9ae21a9baf5e"
+    },
+    {
+      "type": "route",
+      "uuid": "f6794020-0527-444b-8651-6618d42b76fc"
+    },
+    {
+      "type": "route",
+      "uuid": "7f8ab385-2a78-4236-89d6-ecc224fd70b7"
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [
+    {
+      "key": "Content-Type",
+      "value": "application/json"
+    }
+  ],
+  "proxyReqHeaders": [],
+  "proxyResHeaders": [],
+  "data": [
+    {
+      "uuid": "792c3c4a-351a-4b31-aa82-5c4afe039a80",
+      "id": "shipmentsData",
+      "name": "shipments",
+      "documentation": "In-memory shipments storage. Starts empty and resets when the Mockoon server restarts.",
+      "value": "[]"
+    }
+  ],
+  "callbacks": []
+}

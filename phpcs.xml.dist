@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<ruleset name="CI4">
+    <description>CodeIgniter 4 coding standard (PSR-12).</description>
+
+    <!-- What to check -->
+    <file>app</file>
+
+    <!-- Where to check -->
+    <exclude-pattern>app/Config/*</exclude-pattern>
+    <exclude-pattern>app/Views/*</exclude-pattern>
+
+    <!-- What standard to follow -->
+    <rule ref="PSR12"/>
+
+    <!-- Allow longer lines. -->
+    <rule ref="Generic.Files.LineLength">
+        <properties>
+            <property name="lineLimit" value="140"/>
+            <property name="absoluteLineLimit" value="0"/>
+        </properties>
+    </rule>
+
+    <!-- Enforce a single space around operators (incl. '=' and '=>'), preventing assignment alignment padding. -->
+    <rule ref="Squiz.WhiteSpace.OperatorSpacing">
+        <properties>
+            <property name="ignoreSpacingBeforeAssignments" value="false"/>
+        </properties>
+    </rule>
+
+    <!-- What to show -->
+    <arg name="colors"/>
+    <arg value="ps"/>
+
+</ruleset>
